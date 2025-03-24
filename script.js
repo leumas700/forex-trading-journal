@@ -337,13 +337,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if it's a winning trade
         if (newTrade.result === 'win') {
             // Launch confetti
+
             confetti({
                 particleCount: 100,
+                startVelocity: 30,
                 spread: 360,
-                origin: { y: 0.28 },
-                colors: ['#3498db', '#2ecc71', '#9b59b6', '#f1c40f', '#e74c3c']
-            });
-            confetti({
+                origin: {
+                  x: Math.random(),
+                  // since they fall down, start a bit higher than random
+                  y: Math.random() - 0.2
+                }
+              });
+              confetti({
+                particleCount: 100,
+                startVelocity: 30,
+                spread: 360,
+                origin: {
+                  x: Math.random(),
+                  // since they fall down, start a bit higher than random
+                  y: Math.random() - 0.2
+                }
+              });
+              confetti({
                 particleCount: 100,
                 startVelocity: 30,
                 spread: 360,
