@@ -333,6 +333,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         trades.push(newTrade);
         saveTrades(trades);
+
+        // Check if it's a winning trade
+        if (newTrade.result === 'win') {
+            // Launch confetti
+            confetti({
+                particleCount: 100,
+                spread: 360,
+                origin: { y: 0.28 },
+                colors: ['#3498db', '#2ecc71', '#9b59b6', '#f1c40f', '#e74c3c']
+            });
+            confetti({
+                particleCount: 100,
+                startVelocity: 30,
+                spread: 360,
+                origin: {
+                  x: Math.random(),
+                  // since they fall down, start a bit higher than random
+                  y: Math.random() - 0.2
+                }
+              });
+            
+        }
         
         document.getElementById('date').value = today;
         document.getElementById('link').value = '';
