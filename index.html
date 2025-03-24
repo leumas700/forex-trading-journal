@@ -4,188 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tradingjournal</title>
-    <style>
-        /* General styles */
-        body {
-            font-family: Helvetica, sans-serif;
-            max-width: 95%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #3498db;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-
-        /* Form elements */
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /* Button styles */
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        .delete-btn {
-            background-color: #e74c3c;
-        }
-        .delete-btn:hover {
-            background-color: #c0392b;
-        }
-
-        /* Action buttons */
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .action-btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .action-btn:hover {
-            background-color: #2980b9;
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
-        }
-        .action-btn:active {
-            background-color: #1c5980;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-            transform: translateY(0);
-        }
-
-        /* Table styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden; /* Ensures rounded corners are visible */
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* Layout components */
-        .flex-container {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            flex-wrap: wrap; /* Add this to allow wrapping on small screens */
-        }
-        
-        .summary {
-            padding: 15px;
-            flex: 1 1 250px; /* Min-width for statistics panel */
-        }
-        
-        .chart-container {
-            padding: 15px;
-            flex: 3 1 400px; /* Chart takes more space but has min-width */
-            height: 350px; /* Fixed height for consistency */
-            position: relative; /* Important for Chart.js responsive behavior */
-        }
-
-        /* Add media query for small screens */
-        @media (max-width: 768px) {
-            .flex-container {
-                flex-direction: column;
-            }
-            
-            .chart-container {
-                height: 300px; /* Slightly smaller on mobile */
-            }
-        }
-
-        /* Add these new styles for the edit modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close-btn:hover {
-            color: black;
-        }
-        
-        .edit-btn {
-            background-color: #3498db;
-            margin-right: 5px;
-        }
-        
-        .edit-btn:hover {
-            background-color: #3498db;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -198,13 +17,13 @@
             <input type="file" id="importFile" accept=".json" style="display: none;">
         </div>
         
-        <form id="tradeForm" style="display: flex; flex-wrap: wrap; gap: 15px;">
-            <div class="form-group" style="flex: 1 1 200px;">
+        <form id="tradeForm" class="trade-form-container">
+            <div class="form-group trade-form-field">
                 <label for="date">Date:</label>
                 <input type="date" id="date" required>
             </div>
             
-            <div class="form-group" style="flex: 1 1 200px;">
+            <div class="form-group trade-form-field">
                 <label for="pair">Pair:</label>
                 <select id="pair" required>
                     <option value="GBPUSD">GBPUSD</option>
@@ -212,12 +31,12 @@
                 </select>
             </div>
             
-            <div class="form-group" style="flex: 1 1 200px;">
+            <div class="form-group trade-form-field">
                 <label for="rr">RR (Risk to Reward):</label>
                 <input type="number" id="rr" step="0.1" min="0" required>
             </div>
             
-            <div class="form-group" style="flex: 1 1 200px;">
+            <div class="form-group trade-form-field">
                 <label for="direction">Direction:</label>
                 <select id="direction" required>
                     <option value="long">Long</option>
@@ -225,7 +44,7 @@
                 </select>
             </div>
 
-            <div class="form-group" style="flex: 1 1 200px;">
+            <div class="form-group trade-form-field">
                 <label for="result">Result:</label>
                 <select id="result" required>
                     <option value="win">Win</option>
@@ -233,20 +52,20 @@
                 </select>
             </div>
 
-            <div class="form-group" style="flex: 1 1 100%;">
+            <div class="form-group trade-form-field" style="flex: 1 1 100%;">
                 <label for="link">Screenshot:</label>
                 <input type="url" id="link" placeholder="https://www.tradingview.com/x/wAVvXUvq/">
             </div>
             
-            <div style="flex: 1 1 100%; text-align: center;">
-                <button type="submit" style="width: 100%; max-width: 200px;">Add</button>
+            <div class="trade-form-submit">
+                <button type="submit">Add</button>
             </div>
         </form>
 
-        <div class="filter-section" style="margin-top: 30px; background-color: #f8f8f8; padding: 15px; border-radius: 8px;">
-            <h3 style="margin-top: 0; margin-bottom: 15px;">Filters</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+        <div class="filter-section">
+            <h3>Filters</h3>
+            <div class="filter-controls">
+                <div class="form-group filter-control">
                     <label for="filterPair">Pair:</label>
                     <select id="filterPair">
                         <option value="">All Pairs</option>
@@ -255,7 +74,7 @@
                     </select>
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                <div class="form-group filter-control">
                     <label for="filterResult">Result:</label>
                     <select id="filterResult">
                         <option value="">All Results</option>
@@ -264,7 +83,7 @@
                     </select>
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                <div class="form-group filter-control">
                     <label for="filterDirection">Direction:</label>
                     <select id="filterDirection">
                         <option value="">All Directions</option>
@@ -273,24 +92,24 @@
                     </select>
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                <div class="form-group filter-control">
                     <label for="filterDateFrom">From Date:</label>
                     <input type="date" id="filterDateFrom">
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                <div class="form-group filter-control">
                     <label for="filterDateTo">To Date:</label>
                     <input type="date" id="filterDateTo">
                 </div>
                 
-                <div style="flex: 1 1 150px; display: flex; align-items: flex-end;">
-                    <button id="resetFilters" style="width: 100%;">Reset Filters</button>
+                <div class="filter-button">
+                    <button id="resetFilters">Reset Filters</button>
                 </div>
             </div>
         </div>
 
         <div class="flex-container">
-            <div class="summary" id="summary" style="flex: 0 0 200px;">
+            <div class="summary" id="summary">
                 <h4>Statistics</h4>
                 <p>Total Trades: <span id="totalTrades">0</span></p>
                 <p>Won: <span id="winTrades">0</span> (<span id="winRate">0%</span>)</p>
@@ -298,7 +117,7 @@
                 <p>Average R: <span id="avgRR">0</span></p>
             </div>
 
-            <div class="chart-container" style="flex: 1;">
+            <div class="chart-container">
                 <canvas id="growthChart"></canvas>
             </div>
         </div>
@@ -321,20 +140,20 @@
         </table>
     </div>
     
-    <!-- Add this modal for editing trades -->
+    <!-- Edit modal -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeEditModal">&times;</span>
             <h3>Edit Trade</h3>
-            <form id="editTradeForm" style="display: flex; flex-wrap: wrap; gap: 15px;">
+            <form id="editTradeForm" class="trade-form-container">
                 <input type="hidden" id="editTradeId">
                 
-                <div class="form-group" style="flex: 1 1 200px;">
+                <div class="form-group trade-form-field">
                     <label for="editDate">Date:</label>
                     <input type="date" id="editDate" required>
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 200px;">
+                <div class="form-group trade-form-field">
                     <label for="editPair">Pair:</label>
                     <select id="editPair" required>
                         <option value="GBPUSD">GBPUSD</option>
@@ -342,12 +161,12 @@
                     </select>
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 200px;">
+                <div class="form-group trade-form-field">
                     <label for="editRR">RR (Risk to Reward):</label>
                     <input type="number" id="editRR" step="0.1" min="0" required>
                 </div>
                 
-                <div class="form-group" style="flex: 1 1 200px;">
+                <div class="form-group trade-form-field">
                     <label for="editDirection">Direction:</label>
                     <select id="editDirection" required>
                         <option value="long">Long</option>
@@ -355,7 +174,7 @@
                     </select>
                 </div>
 
-                <div class="form-group" style="flex: 1 1 200px;">
+                <div class="form-group trade-form-field">
                     <label for="editResult">Result:</label>
                     <select id="editResult" required>
                         <option value="win">Win</option>
@@ -363,415 +182,18 @@
                     </select>
                 </div>
 
-                <div class="form-group" style="flex: 1 1 100%;">
+                <div class="form-group trade-form-field" style="flex: 1 1 100%;">
                     <label for="editLink">Screenshot:</label>
                     <input type="url" id="editLink" placeholder="https://www.tradingview.com/x/wAVvXUvq/">
                 </div>
                 
-                <div style="flex: 1 1 100%; text-align: center;">
-                    <button type="submit" style="width: 100%; max-width: 200px;">Save Changes</button>
+                <div class="trade-form-submit">
+                    <button type="submit">Save Changes</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize variables
-            let trades = [];
-            let growthChart;
-
-            // Helper function for date formatting
-            function padZero(num) {
-                return num < 10 ? '0' + num : num;
-            }
-
-            function initChart() {
-                if (growthChart) {
-                    growthChart.destroy();
-                }
-                
-                const ctx = document.getElementById('growthChart').getContext('2d');
-                growthChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Growth in R',
-                            data: [],
-                            borderColor: 'rgb(52, 152, 219)',
-                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                            tension: 0.1,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false, // This is key for responsive charts
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Cumulative R'
-                                },
-                                grid: {
-                                    color: 'rgba(0, 0, 0, 0.05)'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Trades'
-                                },
-                                grid: {
-                                    display: false
-                                },
-                                ticks: {
-                                    maxRotation: 45, // Rotate labels for better fit
-                                    minRotation: 45,
-                                    autoSkip: true, // Skip labels that don't fit
-                                    maxTicksLimit: 15 // Limit number of ticks for readability
-                                }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            tooltip: {
-                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                                bodyFont: {
-                                    size: 14
-                                },
-                                padding: 10
-                            }
-                        }
-                    }
-                });
-            }
-
-            function updateChart() {
-                if (!growthChart) {
-                    initChart();
-                }
-                
-                // Use filtered trades instead of all trades
-                const filteredTrades = getFilteredTrades();
-                const sortedTrades = [...filteredTrades].sort((a, b) => 
-                    new Date(a.date) - new Date(b.date)
-                );
-
-                let cumulative = 0;
-                const data = sortedTrades.map(trade => {
-                    cumulative += (trade.result === 'win') ? parseFloat(trade.rr) : -1;
-                    return cumulative;
-                });
-
-                const labels = sortedTrades.map(trade => {
-                    const date = new Date(trade.date);
-                    return `${padZero(date.getDate())}.${padZero(date.getMonth() + 1)}.${date.getFullYear()}`;
-                });
-
-                growthChart.data.labels = labels;
-                growthChart.data.datasets[0].data = data;
-                growthChart.update();
-            }
-
-            function updateSummary() {
-                // Use filtered trades instead of all trades
-                const filteredTrades = getFilteredTrades();
-                const totalTrades = filteredTrades.length;
-                const winTrades = filteredTrades.filter(t => t.result === 'win').length;
-                const lossTrades = totalTrades - winTrades;
-                
-                const winRate = totalTrades > 0 ? (winTrades / totalTrades * 100).toFixed(1) : 0;
-                const lossRate = totalTrades > 0 ? (lossTrades / totalTrades * 100).toFixed(1) : 0;
-                
-                const totalRR = filteredTrades.reduce((sum, trade) => 
-                    sum + (trade.result === 'win' ? parseFloat(trade.rr) : -1), 0);
-                
-                const avgRR = totalTrades > 0 ? (totalRR / totalTrades).toFixed(2) : 0;
-                
-                document.getElementById('totalTrades').textContent = totalTrades;
-                document.getElementById('winTrades').textContent = winTrades;
-                document.getElementById('lossTrades').textContent = lossTrades;
-                document.getElementById('winRate').textContent = winRate + '%';
-                document.getElementById('lossRate').textContent = lossRate + '%';
-                document.getElementById('avgRR').textContent = avgRR;
-            }
-
-            function loadTrades() {
-                const tradesJSON = localStorage.getItem('forexTrades');
-                return tradesJSON ? JSON.parse(tradesJSON) : [];
-            }
-
-            function saveTrades(tradesToSave) {
-                localStorage.setItem('forexTrades', JSON.stringify(tradesToSave));
-                trades = tradesToSave;
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            }
-
-            function updateTradesTable() {
-                const tbody = document.querySelector('#tradesTable tbody');
-                tbody.innerHTML = '';
-                
-                // Use filtered trades instead of all trades
-                const filteredTrades = getFilteredTrades();
-                filteredTrades.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                filteredTrades.forEach(trade => {
-                    const tr = document.createElement('tr');
-                    
-                    const dateObj = new Date(trade.date);
-                    const formattedDate = `${padZero(dateObj.getDate())}.${padZero(dateObj.getMonth() + 1)}.${dateObj.getFullYear()}`;
-                    
-                    tr.innerHTML = `
-                        <td>${formattedDate}</td>
-                        <td>${trade.pair}</td>
-                        <td>${trade.rr}</td>
-                        <td>${trade.result}</td>
-                        <td>${trade.direction}</td>
-                        <td>${trade.link ? `<button onclick="window.open('${trade.link}', '_blank')">TradingView</button>` : ''}</td>
-                        <td>
-                            <button class="edit-btn" data-id="${trade.id}">Edit</button>
-                            <button class="delete-btn" data-id="${trade.id}">Delete</button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-                
-                // Edit button event listeners
-                document.querySelectorAll('.edit-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = parseInt(this.getAttribute('data-id'));
-                        openEditModal(id);
-                    });
-                });
-                
-                // Delete button event listeners (keep your existing code)
-                document.querySelectorAll('.delete-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const id = parseInt(this.getAttribute('data-id'));
-                        trades = trades.filter(trade => trade.id !== id);
-                        saveTrades(trades);
-                    });
-                });
-            }
-
-            // Add these new functions for editing
-            
-            function openEditModal(tradeId) {
-                const trade = trades.find(t => t.id === tradeId);
-                if (!trade) return;
-                
-                // Populate the edit form
-                document.getElementById('editTradeId').value = trade.id;
-                document.getElementById('editDate').value = trade.date;
-                document.getElementById('editPair').value = trade.pair;
-                document.getElementById('editRR').value = trade.rr;
-                document.getElementById('editDirection').value = trade.direction;
-                document.getElementById('editResult').value = trade.result;
-                document.getElementById('editLink').value = trade.link || '';
-                
-                // Show the modal
-                document.getElementById('editModal').style.display = 'block';
-            }
-            
-            function closeEditModal() {
-                document.getElementById('editModal').style.display = 'none';
-            }
-            
-            // Add event listeners for the edit modal
-            document.getElementById('closeEditModal').addEventListener('click', closeEditModal);
-            window.addEventListener('click', function(event) {
-                if (event.target === document.getElementById('editModal')) {
-                    closeEditModal();
-                }
-            });
-            
-            document.getElementById('editTradeForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const tradeId = parseInt(document.getElementById('editTradeId').value);
-                const tradeIndex = trades.findIndex(t => t.id === tradeId);
-                
-                if (tradeIndex !== -1) {
-                    // Update the trade with edited values
-                    trades[tradeIndex] = {
-                        id: tradeId,
-                        date: document.getElementById('editDate').value,
-                        pair: document.getElementById('editPair').value,
-                        rr: parseFloat(document.getElementById('editRR').value),
-                        result: document.getElementById('editResult').value,
-                        direction: document.getElementById('editDirection').value,
-                        link: document.getElementById('editLink').value
-                    };
-                    
-                    // Save and update UI
-                    saveTrades(trades);
-                    closeEditModal();
-                }
-            });
-
-            // Add these functions for filtering
-            function getFilteredTrades() {
-                const pair = document.getElementById('filterPair').value;
-                const result = document.getElementById('filterResult').value;
-                const direction = document.getElementById('filterDirection').value;
-                const dateFrom = document.getElementById('filterDateFrom').value;
-                const dateTo = document.getElementById('filterDateTo').value;
-                
-                return trades.filter(trade => {
-                    // Apply pair filter
-                    if (pair && trade.pair !== pair) return false;
-                    
-                    // Apply result filter
-                    if (result && trade.result !== result) return false;
-                    
-                    // Apply direction filter
-                    if (direction && trade.direction !== direction) return false;
-                    
-                    // Apply date range filter - fixed to use proper date comparison
-                    if (dateFrom) {
-                        const fromDate = new Date(dateFrom);
-                        const tradeDate = new Date(trade.date);
-                        // Set time to midnight to compare dates only
-                        fromDate.setHours(0, 0, 0, 0);
-                        tradeDate.setHours(0, 0, 0, 0);
-                        if (tradeDate < fromDate) return false;
-                    }
-                    
-                    if (dateTo) {
-                        const toDate = new Date(dateTo);
-                        const tradeDate = new Date(trade.date);
-                        // Set time to midnight to compare dates only
-                        toDate.setHours(0, 0, 0, 0);
-                        tradeDate.setHours(0, 0, 0, 0);
-                        if (tradeDate > toDate) return false;
-                    }
-                    
-                    // If passed all filters
-                    return true;
-                });
-            }
-
-            function resetAllFilters() {
-                document.getElementById('filterPair').value = '';
-                document.getElementById('filterResult').value = '';
-                document.getElementById('filterDirection').value = '';
-                document.getElementById('filterDateFrom').value = '';
-                document.getElementById('filterDateTo').value = '';
-                
-                // Update UI with all trades
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            }
-
-            // Add filter event listeners
-            document.getElementById('filterPair').addEventListener('change', function() {
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            });
-
-            document.getElementById('filterResult').addEventListener('change', function() {
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            });
-
-            document.getElementById('filterDirection').addEventListener('change', function() {
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            });
-
-            document.getElementById('filterDateFrom').addEventListener('change', function() {
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            });
-
-            document.getElementById('filterDateTo').addEventListener('change', function() {
-                updateTradesTable();
-                updateSummary();
-                updateChart();
-            });
-
-            document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
-
-            // Initialize the app
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').value = today;
-            document.getElementById('rr').value = '2';
-            trades = loadTrades();
-            updateTradesTable();
-            updateSummary();
-            initChart();
-            updateChart();
-
-            // Event listeners
-            document.getElementById('tradeForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const newTrade = {
-                    id: Date.now(),
-                    date: document.getElementById('date').value,
-                    pair: document.getElementById('pair').value,
-                    rr: parseFloat(document.getElementById('rr').value),
-                    result: document.getElementById('result').value,
-                    direction: document.getElementById('direction').value,
-                    link: document.getElementById('link').value
-                };
-                
-                trades.push(newTrade);
-                saveTrades(trades);
-                
-                document.getElementById('date').value = today;
-                document.getElementById('link').value = '';
-            });
-
-            document.getElementById('exportBtn').addEventListener('click', function() {
-                const dataStr = JSON.stringify(trades, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                const exportFileDefaultName = 'forex_trades.json';
-                
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportFileDefaultName);
-                linkElement.click();
-            });
-            
-            document.getElementById('importBtn').addEventListener('click', function() {
-                document.getElementById('importFile').click();
-            });
-            
-            document.getElementById('importFile').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const importedTrades = JSON.parse(e.target.result);
-                        if (Array.isArray(importedTrades)) {
-                            trades = importedTrades;
-                            saveTrades(trades);
-                            alert('Trades imported successfully.');
-                        } else {
-                            alert('Failed to import trades. Invalid data format.');
-                        }
-                    } catch (error) {
-                        alert('Error reading the file: ' + error.message);
-                    }
-                };
-                reader.readAsText(file);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

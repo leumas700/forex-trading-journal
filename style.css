@@ -1,0 +1,230 @@
+/* General styles */
+body {
+    font-family: Helvetica, sans-serif;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #3498db;
+}
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Button styles */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #2980b9;
+}
+.delete-btn {
+    background-color: #e74c3c;
+}
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Action buttons */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.action-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.action-btn:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+.action-btn:active {
+    background-color: #1c5980;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    transform: translateY(0);
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden; /* Ensures rounded corners are visible */
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Layout components */
+.flex-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Add this to allow wrapping on small screens */
+}
+
+.summary {
+    padding: 15px;
+    flex: 1 1 250px; /* Min-width for statistics panel */
+}
+
+.chart-container {
+    padding: 15px;
+    flex: 3 1 400px; /* Chart takes more space but has min-width */
+    height: 350px; /* Fixed height for consistency */
+    position: relative; /* Important for Chart.js responsive behavior */
+}
+
+/* Add media query for small screens */
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+    }
+    
+    .chart-container {
+        height: 300px; /* Slightly smaller on mobile */
+    }
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: black;
+}
+
+.edit-btn {
+    background-color: #3498db;
+    margin-right: 5px;
+}
+
+.edit-btn:hover {
+    background-color: #3498db;
+}
+
+/* Filter section styles */
+.filter-section {
+    margin-top: 30px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.filter-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-control {
+    flex: 1 1 150px;
+    margin-bottom: 0;
+}
+
+.filter-button {
+    flex: 1 1 150px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.trade-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.trade-form-field {
+    flex: 1 1 200px;
+}
+
+.trade-form-submit {
+    flex: 1 1 100%;
+    text-align: center;
+}
+
+.trade-form-submit button {
+    width: 100%;
+    max-width: 200px;
+}
