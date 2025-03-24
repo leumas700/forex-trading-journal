@@ -243,9 +243,55 @@
             </div>
         </form>
 
+        <div class="filter-section" style="margin-top: 30px; background-color: #f8f8f8; padding: 15px; border-radius: 8px;">
+            <h3 style="margin-top: 0; margin-bottom: 15px;">Filters</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                    <label for="filterPair">Pair:</label>
+                    <select id="filterPair">
+                        <option value="">All Pairs</option>
+                        <option value="GBPUSD">GBPUSD</option>
+                        <option value="GBPJPY">GBPJPY</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                    <label for="filterResult">Result:</label>
+                    <select id="filterResult">
+                        <option value="">All Results</option>
+                        <option value="win">Win</option>
+                        <option value="loss">Loss</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                    <label for="filterDirection">Direction:</label>
+                    <select id="filterDirection">
+                        <option value="">All Directions</option>
+                        <option value="long">Long</option>
+                        <option value="short">Short</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                    <label for="filterDateFrom">From Date:</label>
+                    <input type="date" id="filterDateFrom">
+                </div>
+                
+                <div class="form-group" style="flex: 1 1 150px; margin-bottom: 0;">
+                    <label for="filterDateTo">To Date:</label>
+                    <input type="date" id="filterDateTo">
+                </div>
+                
+                <div style="flex: 1 1 150px; display: flex; align-items: flex-end;">
+                    <button id="resetFilters" style="width: 100%;">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+
         <div class="flex-container">
             <div class="summary" id="summary" style="flex: 0 0 200px;">
-                <h3>Statistics</h3>
+                <h4>Statistics</h4>
                 <p>Total Trades: <span id="totalTrades">0</span></p>
                 <p>Won: <span id="winTrades">0</span> (<span id="winRate">0%</span>)</p>
                 <p>Trades Lost: <span id="lossTrades">0</span> (<span id="lossRate">0%</span>)</p>
@@ -409,8 +455,10 @@
                 if (!growthChart) {
                     initChart();
                 }
-
-                const sortedTrades = [...trades].sort((a, b) => 
+                
+                // Use filtered trades instead of all trades
+                const filteredTrades = getFilteredTrades();
+                const sortedTrades = [...filteredTrades].sort((a, b) => 
                     new Date(a.date) - new Date(b.date)
                 );
 
@@ -431,14 +479,16 @@
             }
 
             function updateSummary() {
-                const totalTrades = trades.length;
-                const winTrades = trades.filter(t => t.result === 'win').length;
+                // Use filtered trades instead of all trades
+                const filteredTrades = getFilteredTrades();
+                const totalTrades = filteredTrades.length;
+                const winTrades = filteredTrades.filter(t => t.result === 'win').length;
                 const lossTrades = totalTrades - winTrades;
                 
                 const winRate = totalTrades > 0 ? (winTrades / totalTrades * 100).toFixed(1) : 0;
                 const lossRate = totalTrades > 0 ? (lossTrades / totalTrades * 100).toFixed(1) : 0;
                 
-                const totalRR = trades.reduce((sum, trade) => 
+                const totalRR = filteredTrades.reduce((sum, trade) => 
                     sum + (trade.result === 'win' ? parseFloat(trade.rr) : -1), 0);
                 
                 const avgRR = totalTrades > 0 ? (totalRR / totalTrades).toFixed(2) : 0;
@@ -468,9 +518,11 @@
                 const tbody = document.querySelector('#tradesTable tbody');
                 tbody.innerHTML = '';
                 
-                trades.sort((a, b) => new Date(b.date) - new Date(a.date));
+                // Use filtered trades instead of all trades
+                const filteredTrades = getFilteredTrades();
+                filteredTrades.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
-                trades.forEach(trade => {
+                filteredTrades.forEach(trade => {
                     const tr = document.createElement('tr');
                     
                     const dateObj = new Date(trade.date);
@@ -563,6 +615,94 @@
                     closeEditModal();
                 }
             });
+
+            // Add these functions for filtering
+            function getFilteredTrades() {
+                const pair = document.getElementById('filterPair').value;
+                const result = document.getElementById('filterResult').value;
+                const direction = document.getElementById('filterDirection').value;
+                const dateFrom = document.getElementById('filterDateFrom').value;
+                const dateTo = document.getElementById('filterDateTo').value;
+                
+                return trades.filter(trade => {
+                    // Apply pair filter
+                    if (pair && trade.pair !== pair) return false;
+                    
+                    // Apply result filter
+                    if (result && trade.result !== result) return false;
+                    
+                    // Apply direction filter
+                    if (direction && trade.direction !== direction) return false;
+                    
+                    // Apply date range filter - fixed to use proper date comparison
+                    if (dateFrom) {
+                        const fromDate = new Date(dateFrom);
+                        const tradeDate = new Date(trade.date);
+                        // Set time to midnight to compare dates only
+                        fromDate.setHours(0, 0, 0, 0);
+                        tradeDate.setHours(0, 0, 0, 0);
+                        if (tradeDate < fromDate) return false;
+                    }
+                    
+                    if (dateTo) {
+                        const toDate = new Date(dateTo);
+                        const tradeDate = new Date(trade.date);
+                        // Set time to midnight to compare dates only
+                        toDate.setHours(0, 0, 0, 0);
+                        tradeDate.setHours(0, 0, 0, 0);
+                        if (tradeDate > toDate) return false;
+                    }
+                    
+                    // If passed all filters
+                    return true;
+                });
+            }
+
+            function resetAllFilters() {
+                document.getElementById('filterPair').value = '';
+                document.getElementById('filterResult').value = '';
+                document.getElementById('filterDirection').value = '';
+                document.getElementById('filterDateFrom').value = '';
+                document.getElementById('filterDateTo').value = '';
+                
+                // Update UI with all trades
+                updateTradesTable();
+                updateSummary();
+                updateChart();
+            }
+
+            // Add filter event listeners
+            document.getElementById('filterPair').addEventListener('change', function() {
+                updateTradesTable();
+                updateSummary();
+                updateChart();
+            });
+
+            document.getElementById('filterResult').addEventListener('change', function() {
+                updateTradesTable();
+                updateSummary();
+                updateChart();
+            });
+
+            document.getElementById('filterDirection').addEventListener('change', function() {
+                updateTradesTable();
+                updateSummary();
+                updateChart();
+            });
+
+            document.getElementById('filterDateFrom').addEventListener('change', function() {
+                updateTradesTable();
+                updateSummary();
+                updateChart();
+            });
+
+            document.getElementById('filterDateTo').addEventListener('change', function() {
+                updateTradesTable();
+                updateSummary();
+                updateChart();
+            });
+
+            document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
 
             // Initialize the app
             const today = new Date().toISOString().split('T')[0];
