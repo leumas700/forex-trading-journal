@@ -53,6 +53,22 @@ button:hover {
 .delete-btn:hover {
     background-color: #c0392b;
 }
+.delete-all-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: auto;
+    position: relative;
+    font-weight: bold;
+}
+.delete-all-btn:hover {
+    background-color: #c0392b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
 
 /* Action buttons */
 .actions {

@@ -412,4 +412,19 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         reader.readAsText(file);
     });
+    
+    // Set up Delete All Trades functionality
+    document.getElementById('deleteAllBtn').addEventListener('click', function() {
+        if (trades.length === 0) {
+            alert('No trades to delete.');
+            return;
+        }
+        
+        const confirmation = confirm('Are you sure you want to delete ALL trades? This action cannot be undone.');
+        if (confirmation) {
+            trades = [];
+            saveTrades(trades);
+            alert('All trades have been deleted.');
+        }
+    });
 });
