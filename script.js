@@ -7,6 +7,42 @@ function padZero(num) {
     return num < 10 ? '0' + num : num;
 }
 
+// Helper function to get selected labels from a form
+function getSelectedLabels(prefix = '') {
+    const labels = [];
+    const selector = prefix ? `input[name="${prefix}Labels"]:checked` : 'input[name="labels"]:checked';
+    document.querySelectorAll(selector).forEach(checkbox => {
+        labels.push(checkbox.value);
+    });
+    return labels;
+}
+
+// Helper function to set checkbox state in edit form
+function setLabelCheckboxes(labels = []) {
+    // Clear all checkboxes first
+    document.querySelectorAll('input[name="editLabels"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    // Set checkboxes based on trade labels
+    if (labels && labels.length > 0) {
+        labels.forEach(label => {
+            // Find checkbox by value instead of by ID
+            const checkbox = document.querySelector(`input[name="editLabels"][value="${label}"]`);
+            if (checkbox) checkbox.checked = true;
+        });
+    }
+}
+
+// Helper function to create label tags HTML
+function createLabelTagsHtml(labels = []) {
+    if (!labels || labels.length === 0) return '';
+    
+    return labels.map(label => 
+        `<span class="label-tag label-${label}">${label}</span>`
+    ).join(' ');
+}
+
 function initChart() {
     if (growthChart) {
         growthChart.destroy();
@@ -152,6 +188,7 @@ function updateTradesTable() {
             <td>${trade.rr}</td>
             <td>${trade.result}</td>
             <td>${trade.direction}</td>
+            <td>${createLabelTagsHtml(trade.labels)}</td>
             <td>${trade.link ? `<button onclick="window.open('${trade.link}', '_blank')">TradingView</button>` : ''}</td>
             <td>
                 <button class="edit-btn" data-id="${trade.id}">Edit</button>
@@ -189,6 +226,9 @@ function openEditModal(tradeId) {
     document.getElementById('editResult').value = trade.result;
     document.getElementById('editLink').value = trade.link || '';
     
+    // Set label checkboxes based on trade labels
+    setLabelCheckboxes(trade.labels);
+    
     document.getElementById('editModal').style.display = 'block';
 }
 
@@ -202,6 +242,7 @@ function getFilteredTrades() {
     const direction = document.getElementById('filterDirection').value;
     const dateFrom = document.getElementById('filterDateFrom').value;
     const dateTo = document.getElementById('filterDateTo').value;
+    const label = document.getElementById('filterLabel').value;
     
     return trades.filter(trade => {
         if (pair && trade.pair !== pair) return false;
@@ -226,6 +267,14 @@ function getFilteredTrades() {
             if (tradeDate > toDate) return false;
         }
         
+        if (label) {
+            if (label === 'none') {
+                if (trade.labels && trade.labels.length > 0) return false;
+            } else {
+                if (!trade.labels || !trade.labels.includes(label)) return false;
+            }
+        }
+        
         return true;
     });
 }
@@ -236,6 +285,7 @@ function resetAllFilters() {
     document.getElementById('filterDirection').value = '';
     document.getElementById('filterDateFrom').value = '';
     document.getElementById('filterDateTo').value = '';
+    document.getElementById('filterLabel').value = '';
     
     updateTradesTable();
     updateSummary();
@@ -266,7 +316,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 rr: parseFloat(document.getElementById('editRR').value),
                 result: document.getElementById('editResult').value,
                 direction: document.getElementById('editDirection').value,
-                link: document.getElementById('editLink').value
+                link: document.getElementById('editLink').value,
+                labels: getSelectedLabels('edit')
             };
             
             saveTrades(trades);
@@ -305,6 +356,12 @@ document.addEventListener('DOMContentLoaded', function() {
         updateChart();
     });
 
+    document.getElementById('filterLabel').addEventListener('change', function() {
+        updateTradesTable();
+        updateSummary();
+        updateChart();
+    });
+
     document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
 
     // Initialize the app
@@ -328,7 +385,8 @@ document.addEventListener('DOMContentLoaded', function() {
             rr: parseFloat(document.getElementById('rr').value),
             result: document.getElementById('result').value,
             direction: document.getElementById('direction').value,
-            link: document.getElementById('link').value
+            link: document.getElementById('link').value,
+            labels: getSelectedLabels()
         };
         
         trades.push(newTrade);
@@ -373,6 +431,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.getElementById('date').value = today;
         document.getElementById('link').value = '';
+        // Clear labels
+        document.querySelectorAll('input[name="labels"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
     });
 
     // Set up import/export handlers
@@ -400,6 +462,13 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const importedTrades = JSON.parse(e.target.result);
                 if (Array.isArray(importedTrades)) {
+                    // Ensure all imported trades have a labels property
+                    importedTrades.forEach(trade => {
+                        if (!trade.hasOwnProperty('labels')) {
+                            trade.labels = [];
+                        }
+                    });
+                    
                     trades = importedTrades;
                     saveTrades(trades);
                     alert('Trades imported successfully.');

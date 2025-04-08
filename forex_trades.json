@@ -387,12 +387,363 @@
     "link": "https://www.tradingview.com/x/dnKdyulV/"
   },
   {
-    "id": 1743455583237,
+    "id": 1743456258745,
     "date": "2025-03-31",
     "pair": "GBPUSD",
     "rr": 2,
     "result": "win",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/HeUUHsLT/"
+  },
+  {
+    "id": 1743456524508,
+    "date": "2025-03-31",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/gem2jCNu/"
+  },
+  {
+    "id": 1743456595716,
+    "date": "2025-03-31",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/vEi5S4s5/"
+  },
+  {
+    "id": 1743456701956,
+    "date": "2025-03-31",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/sMG5bPTA/"
+  },
+  {
+    "id": 1743456840028,
+    "date": "2025-03-31",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/b0fetoXy/"
+  },
+  {
+    "id": 1743456988169,
+    "date": "2025-03-31",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/OZht0SvK/"
+  },
+  {
+    "id": 1743457072406,
+    "date": "2025-03-31",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/2N6VN3Or/"
+  },
+  {
+    "id": 1743538484047,
+    "date": "2025-04-01",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/4oGbOHgK/"
+  },
+  {
+    "id": 1743538586736,
+    "date": "2025-04-01",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/erlpzZ5L/"
+  },
+  {
+    "id": 1743538738719,
+    "date": "2025-04-01",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/NiaUhK0w/"
+  },
+  {
+    "id": 1743538898062,
+    "date": "2025-04-01",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/PLJcWzVd/"
+  },
+  {
+    "id": 1743964809726,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
     "direction": "long",
-    "link": ""
+    "link": "https://www.tradingview.com/x/ceHehRNm/"
+  },
+  {
+    "id": 1743964901112,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/EvLTVzLc/"
+  },
+  {
+    "id": 1743965519713,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/A832FRDv/"
+  },
+  {
+    "id": 1743965542367,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/VBVUpUA9/"
+  },
+  {
+    "id": 1743965684059,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/FCRQSfRx/"
+  },
+  {
+    "id": 1743965812615,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/jw41yxpN/"
+  },
+  {
+    "id": 1743965889119,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/909MQ9cA/"
+  },
+  {
+    "id": 1743965998769,
+    "date": "2025-04-02",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/aPt7HlMv/"
+  },
+  {
+    "id": 1743966263304,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/OoLUTHgy/"
+  },
+  {
+    "id": 1743966580790,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/eUnWvnFF/"
+  },
+  {
+    "id": 1743966665231,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/v5UAnfM2/"
+  },
+  {
+    "id": 1743966746585,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/0qP1wzhD/"
+  },
+  {
+    "id": 1743966808891,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/qefPhqWd/"
+  },
+  {
+    "id": 1743967063405,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/SsAymYZb/"
+  },
+  {
+    "id": 1743967124697,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/TV0UOlWJ/"
+  },
+  {
+    "id": 1743967312856,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/A8aPx06g/"
+  },
+  {
+    "id": 1743967447876,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/wT2PCGiK/"
+  },
+  {
+    "id": 1743967562435,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/5oti3dTd/"
+  },
+  {
+    "id": 1743967620905,
+    "date": "2025-04-03",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/gQC0tYTi/"
+  },
+  {
+    "id": 1743968083981,
+    "date": "2025-04-04",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/h4mnDnZK/"
+  },
+  {
+    "id": 1744060319084,
+    "date": "2025-04-06",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/yt5bl8mK/"
+  },
+  {
+    "id": 1744060369612,
+    "date": "2025-04-07",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/LsRatE87/"
+  },
+  {
+    "id": 1744137108030,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/vt8xULCT/"
+  },
+  {
+    "id": 1744137272587,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/AwH0opO2/"
+  },
+  {
+    "id": 1744137394584,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/GPIN0s6T/"
+  },
+  {
+    "id": 1744137469413,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "long",
+    "link": "https://www.tradingview.com/x/bAPh5UwD/"
+  },
+  {
+    "id": 1744137534109,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/dLYgEUKm/"
+  },
+  {
+    "id": 1744137730372,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "win",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/VSQEr1iU/"
+  },
+  {
+    "id": 1744137856335,
+    "date": "2025-04-08",
+    "pair": "GBPUSD",
+    "rr": 2,
+    "result": "loss",
+    "direction": "short",
+    "link": "https://www.tradingview.com/x/0ZV7ZnOp/"
   }
 ]

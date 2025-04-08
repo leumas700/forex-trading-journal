@@ -59,6 +59,28 @@
                 <input type="url" id="link" placeholder="https://www.tradingview.com/x/wAVvXUvq/">
             </div>
             
+            <div class="form-group trade-form-field" style="flex: 1 1 100%;">
+                <label>Labels:</label>
+                <div class="labels-container">
+                    <div class="label-checkbox">
+                        <input type="checkbox" id="labelPaper" name="labels" value="Paper">
+                        <label for="labelPaper">Paper</label>
+                    </div>
+                    <div class="label-checkbox">
+                        <input type="checkbox" id="labelLive" name="labels" value="Live">
+                        <label for="labelLive">Live</label>
+                    </div>
+                    <div class="label-checkbox">
+                        <input type="checkbox" id="labelClean" name="labels" value="Clean">
+                        <label for="labelClean">Clean</label>
+                    </div>
+                    <div class="label-checkbox">
+                        <input type="checkbox" id="labelUnclean" name="labels" value="Unclean">
+                        <label for="labelUnclean">Unclean</label>
+                    </div>
+                </div>
+            </div>
+            
             <div class="trade-form-submit">
                 <button type="submit">Add</button>
             </div>
@@ -91,6 +113,18 @@
                         <option value="">All Directions</option>
                         <option value="long">Long</option>
                         <option value="short">Short</option>
+                    </select>
+                </div>
+                
+                <div class="form-group filter-control">
+                    <label for="filterLabel">Label:</label>
+                    <select id="filterLabel">
+                        <option value="">All Labels</option>
+                        <option value="Paper">Paper</option>
+                        <option value="Live">Live</option>
+                        <option value="Clean">Clean</option>
+                        <option value="Unclean">Unclean</option>
+                        <option value="none">No Labels</option>
                     </select>
                 </div>
                 
@@ -132,6 +166,7 @@
                     <th>RR</th>
                     <th>Result</th>
                     <th>Direction</th>
+                    <th>Labels</th>
                     <th>Link</th>
                     <th>Action</th>
                 </tr>
@@ -187,6 +222,28 @@
                 <div class="form-group trade-form-field" style="flex: 1 1 100%;">
                     <label for="editLink">Screenshot:</label>
                     <input type="url" id="editLink" placeholder="https://www.tradingview.com/x/wAVvXUvq/">
+                </div>
+                
+                <div class="form-group trade-form-field" style="flex: 1 1 100%;">
+                    <label>Labels:</label>
+                    <div class="labels-container">
+                        <div class="label-checkbox">
+                            <input type="checkbox" id="editLabelPaper" name="editLabels" value="Paper">
+                            <label for="editLabelPaper">Paper</label>
+                        </div>
+                        <div class="label-checkbox">
+                            <input type="checkbox" id="editLabelLive" name="editLabels" value="Live">
+                            <label for="editLabelLive">Live</label>
+                        </div>
+                        <div class="label-checkbox">
+                            <input type="checkbox" id="editLabelClean" name="editLabels" value="Clean">
+                            <label for="editLabelClean">Clean</label>
+                        </div>
+                        <div class="label-checkbox">
+                            <input type="checkbox" id="editLabelUnclean" name="editLabels" value="Unclean">
+                            <label for="editLabelUnclean">Unclean</label>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="trade-form-submit">
